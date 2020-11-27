@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: clients
+  cloud:
+    config:
+      uri: http://localhost:8102
+      allow-override: true
