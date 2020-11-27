@@ -1,9 +1,9 @@
 spring:
   application:
-    name: clients
+    name: accounts
   profiles:
-    active: dev # Change this to use different remote configurations
+    active: ${ACTIVE_PROFILE:dev} # Change this to use different remote configurations
   cloud:
     config:
-      uri: http://localhost:8102
+      uri: ${EUREKA_SERVER:http://localhost:8102}
       allow-override: true
