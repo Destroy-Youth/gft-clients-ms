@@ -2,6 +2,7 @@ package dev.gft.example.clients.clients;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,13 +20,13 @@ public interface DataClient {
     ResponseEntity<CollectionModel<ClientDTO>> findAllClients();
 
     @GetMapping(path = "/{id}")
-    ResponseEntity<CollectionModel<ClientDTO>> findAllClients(@PathVariable("id") Long id);
+    ResponseEntity<EntityModel<ClientDTO>> findOneById(@PathVariable("id") Long id);
 
     @PostMapping(path = "/")
-    ResponseEntity<ClientDTO> createOne(@RequestBody ClientDTO client);
+    ResponseEntity<EntityModel<ClientDTO>> createOne(@RequestBody ClientDTO client);
 
     @PutMapping(path = "/{id}")
-    ResponseEntity<ClientDTO> updateOne(@RequestBody ClientDTO client);
+    ResponseEntity<EntityModel<ClientDTO>> updateOne(@PathVariable("id") Long id, @RequestBody ClientDTO client);
 
     @DeleteMapping(path = "/{id}")
     void deleteOne(@PathVariable("id") Long id);
