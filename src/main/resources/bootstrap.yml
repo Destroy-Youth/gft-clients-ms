@@ -1,6 +1,6 @@
 spring:
   application:
-    name: accounts
+    name: clients
   profiles:
     active: ${ACTIVE_PROFILE:dev} # Change this to use different remote configurations
   cloud:
