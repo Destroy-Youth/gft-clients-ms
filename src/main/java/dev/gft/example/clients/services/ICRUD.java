@@ -10,7 +10,7 @@ public interface ICRUD<T, I> {
 
     T createOne(T newRegistry);
 
-    T updateOne(T updatedRegistry);
+    T updateOne(I id, T updatedRegistry);
 
     void deleteOne(I id);
 }
