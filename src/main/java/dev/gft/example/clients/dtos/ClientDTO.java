@@ -2,6 +2,7 @@ package dev.gft.example.clients.dtos;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class ClientDTO implements Serializable {
 
@@ -13,6 +14,7 @@ public class ClientDTO implements Serializable {
     private String lastName;
     private Date birthDate;
     private String sex;
+    private List<AccountDTO> accounts;
 
     public String getFirstName() {
         return firstName;
@@ -44,6 +46,14 @@ public class ClientDTO implements Serializable {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    public List<AccountDTO> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<AccountDTO> accounts) {
+        this.accounts = accounts;
     }
 
 }
