@@ -34,15 +34,16 @@ public class ClientsService implements ICRUD<ClientDTO, Long> {
 
     @Override
     public ClientDTO createOne(ClientDTO newRegistry) {
-        dataClient.createOne(newRegistry);
-        return newRegistry;
+        Optional<ClientDTO> client = Optional.ofNullable(dataClient.createOne(newRegistry).getBody().getContent());
+        return client.orElseThrow();
     }
 
     @Override
     public ClientDTO updateOne(Long id, ClientDTO updatedRegistry) {
         findOneById(id);
-        dataClient.updateOne(id, updatedRegistry);
-        return updatedRegistry;
+        Optional<ClientDTO> client = Optional
+                .ofNullable(dataClient.updateOne(id, updatedRegistry).getBody().getContent());
+        return client.orElseThrow();
     }
 
     @Override
