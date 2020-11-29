@@ -3,5 +3,5 @@ spring:
     name: clients
   cloud:
     config:
-      uri: http://${EUREKA_SERVER:localhost}:8102
+      uri: http://${CONFIG_SERVER:localhost}:8102
       allow-override: true
