@@ -1,13 +1,14 @@
 package dev.gft.example.clients.services;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.stereotype.Service;
 
 import dev.gft.example.clients.clients.DataClient;
@@ -21,29 +22,28 @@ public class ClientsService implements ICRUD<ClientDTO, Long> {
 
     @Override
     public ClientDTO findOneById(Long id) {
-        Optional<ClientDTO> client = Optional.ofNullable(dataClient.findOneById(id).getBody().getContent());
-        return client.orElseThrow();
+        Optional<EntityModel<ClientDTO>> client = Optional.ofNullable(dataClient.findOneById(id).getBody());
+        return client.orElseThrow().getContent();
     }
 
     @Override
     public List<ClientDTO> findAll() {
-        Optional<Collection<ClientDTO>> clients = Optional
-                .ofNullable(dataClient.findAllClients().getBody().getContent());
-        return new ArrayList<>(clients.orElseThrow());
+        Optional<CollectionModel<ClientDTO>> clients = Optional.ofNullable(dataClient.findAllClients().getBody());
+        return new ArrayList<>(clients.orElseThrow().getContent());
     }
 
     @Override
     public ClientDTO createOne(ClientDTO newRegistry) {
-        Optional<ClientDTO> client = Optional.ofNullable(dataClient.createOne(newRegistry).getBody().getContent());
-        return client.orElseThrow();
+        Optional<EntityModel<ClientDTO>> client = Optional.ofNullable(dataClient.createOne(newRegistry).getBody());
+        return client.orElseThrow().getContent();
     }
 
     @Override
     public ClientDTO updateOne(Long id, ClientDTO updatedRegistry) {
         findOneById(id);
-        Optional<ClientDTO> client = Optional
-                .ofNullable(dataClient.updateOne(id, updatedRegistry).getBody().getContent());
-        return client.orElseThrow();
+        Optional<EntityModel<ClientDTO>> client = Optional
+                .ofNullable(dataClient.updateOne(id, updatedRegistry).getBody());
+        return client.orElseThrow().getContent();
     }
 
     @Override
