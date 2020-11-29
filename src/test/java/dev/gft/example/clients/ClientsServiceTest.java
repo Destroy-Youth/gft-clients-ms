@@ -196,7 +196,7 @@ public class ClientsServiceTest {
 
         when(dataClient.findAllClients()).thenReturn(ResponseEntity.ok(CollectionModel.of(clients)));
 
-        List<String> result = assertDoesNotThrow(() -> clientsService.getAllClientFullNames(" "));
+        List<String> result = assertDoesNotThrow(() -> clientsService.getAllClientFullNames(""));
         assertNotNull(result.get(0));
         assertEquals(4, result.size());
     }
